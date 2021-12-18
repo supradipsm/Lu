@@ -4,38 +4,43 @@
 <title>New Dice Game</title>
 </head>
 <body>
-Person 1:<input type="text">
+<h2>The 'SHAKUNI' Dice Game</h2>
+Person 1:<input type="text" value="Harsh">
 <button class="dice" id=1>Roll the Dice.</button>
 Result:<span></span><br><br>
 
-Person 2:<input type="text">
+Person 2:<input type="text" value="Raghav">
 <button class="dice" id=2>Roll the Dice.</button>
 Result:<span></span><br><br>
 
-Person 3:<input type="text">
+Person 3:<input type="text" value="Nandita">
 <button class="dice" id=3>Roll the Dice.</button>
 Result:<span></span><br><br>
 
-Person 4:<input type="text">
+Person 4:<input type="text" value="Ramesh">
 <button class="dice" id=4>Roll the Dice.</button>
 Result:<span></span><br><br>
 
-Person 5:<input type="text">
+Person 5:<input type="text" value="Rashmi">
 <button class="dice" id=5>Roll the Dice.</button>
 Result:<span></span><br><br>
 
-<button id="endgame">End Game</button>
-<div id="winmsg">gg</div>
+<button id="endgame" disabled>End Game</button>
+<b><div id="winmsg"></div></b>
 
 <script>
     
     person=document.querySelectorAll("input")
     but=document.querySelectorAll(".dice")
     results=document.querySelectorAll("span")
-    endbutton=document.querySelectorAll("#endgame")
-    winMessage=document.querySelectorAll("#winmsg")
+    endbutton=document.querySelector("#endgame")
+    winMessage=document.querySelector("#winmsg")
     dice_result=[];
 
+    for(i=1;i<but.length;i++)
+    {
+        but[i].disabled=true;
+    }
    /* a=1;
     but[0].addEventListener("click",fun)
     function fun(){alert(a+" CLICKED");a++;}
@@ -45,6 +50,7 @@ Result:<span></span><br><br>
       but[i].addEventListener("click",rollDice);
     }
     
+    
     function rollDice(e){
         m=e.target.id;
         console.log(m+ " Button is clicked");
@@ -53,9 +59,11 @@ Result:<span></span><br><br>
         dice_result[m-1]=dice_options[random];
         results[m-1].innerText="Number is "+dice_result[m-1];
         but[m-1].disabled=true;
+        if(but[m])but[m].disabled=false;
+        if(m==5)endbutton.disabled=false;
     }
-
-    endbutton[0].addEventListener("click",endres);
+    
+    endbutton.addEventListener("click",endres);
     function endres(){
         max=dice_result[0];
         //console.log(max+" PRINTED");
@@ -69,7 +77,8 @@ Result:<span></span><br><br>
         {
             if(dice_result[i]==max)
             
-            winMessage[0].innerText="Winner:"+person[i].value;
+            winMessage.innerText=winMessage.innerText+"Winner is "+person[i].value+" with Score of "+dice_result[i]+"\n";
+            endbutton.disabled=true;
            
         }
     }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>New Dice Game</title>
+</head>
+<body>
+Person 1:<input type="text">
+<button class="dice" id=1>Roll the Dice.</button>
+Result:<span></span><br><br>
+
+Person 2:<input type="text">
+<button class="dice" id=2>Roll the Dice.</button>
+Result:<span></span><br><br>
+
+Person 3:<input type="text">
+<button class="dice" id=3>Roll the Dice.</button>
+Result:<span></span><br><br>
+
+Person 4:<input type="text">
+<button class="dice" id=4>Roll the Dice.</button>
+Result:<span></span><br><br>
+
+Person 5:<input type="text">
+<button class="dice" id=5>Roll the Dice.</button>
+Result:<span></span><br><br>
+
+<button id="endgame">End Game</button>
+<div id="winmsg">gg</div>
+
+<script>
+    
+    person=document.querySelectorAll("input")
+    but=document.querySelectorAll(".dice")
+    results=document.querySelectorAll("span")
+    endbutton=document.querySelectorAll("#endgame")
+    winMessage=document.querySelectorAll("#winmsg")
+    dice_result=[];
+
+   /* a=1;
+    but[0].addEventListener("click",fun)
+    function fun(){alert(a+" CLICKED");a++;}
+    //identify the clicks
+  */ for(i=0;i<but.length;i++){
+    console.log(results[i].innerText)
+      but[i].addEventListener("click",rollDice);
+    }
+    
+    function rollDice(e){
+        m=e.target.id;
+        console.log(m+ " Button is clicked");
+        dice_options=[1,2,3,4,5,6]
+        random=parseInt(Math.random()*dice_options.length);
+        dice_result[m-1]=dice_options[random];
+        results[m-1].innerText="Number is "+dice_result[m-1];
+        but[m-1].disabled=true;
+    }
+
+    endbutton[0].addEventListener("click",endres);
+    function endres(){
+        max=dice_result[0];
+        //console.log(max+" PRINTED");
+        for(i=1;i<dice_result.length;i++)
+        {
+            if(dice_result[i]>max)
+            max=dice_result[i];
+        }
+        console.log(max+" PRINTED");
+        for(i=0;i<dice_result.length;i++)
+        {
+            if(dice_result[i]==max)
+            
+            winMessage[0].innerText="Winner:"+person[i].value;
+           
+        }
+    }
+ 
+ 
+</script>
+
+</body>
+</html>
